@@ -10,7 +10,7 @@ function TaskOne() {
 
   const calculateGrandTotal = () => {
     return cart.reduce((acc, item) => {
-      return acc + (item.price * item.qty);
+      return acc + item.price * item.qty;
     }, 0);
   };
 
