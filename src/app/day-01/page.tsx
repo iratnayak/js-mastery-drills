@@ -123,7 +123,7 @@ function DayOne() {
         >
           Run Async Logic
         </button>
-        <div className="bg-black text-green-400 p-3 rounded font-mono text-sm">
+        <div className="bg-white text-green-600 p-3 rounded font-mono text-sm">
           {logs.map((log, i) => (
             <div key={i}>{log}</div>
           ))}
@@ -208,13 +208,10 @@ function DayOne() {
         >
           Check Logic
         </button>
-        <div className="bg-black text-green-400 p-3 rounded font-mono text-sm">
-            {logs.map((log1, m) => (
-                <div key={m}>{log1}
-
-                </div>
-            ))}
-
+        <div className="bg-white text-green-600 p-3 rounded font-mono text-sm">
+          {logs.map((log1, m) => (
+            <div key={m}>{log1}</div>
+          ))}
         </div>
       </div>
     </div>
