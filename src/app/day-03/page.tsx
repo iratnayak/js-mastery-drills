@@ -1,32 +1,91 @@
-import React, { useEffect, useState } from 'react'
+"use client";
+import React, { useEffect, useState } from "react";
 
-// Arrange Data Type
+// 1. Arrange data type
 interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
   website: string;
 }
 
 function DayThree() {
-  // State Trio
-  const [users, setUsers] = useState<User[]>([]); // Data
-  const [loading, setLoading] = useState(true); // Is that loading?
-  const [error, setError] = useState(""); // Is that error?
+  // 2. Set for state users, loading, error
+  const [users, setUsers] = useState<User[]>([]); // Manage the users data
+  const [loading, setLoading] = useState(true); // Manage the loading
+  const [error, setError] = useState("");
 
-  // Data Fetching
+  // 3. Fetching Data
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchUser = async () => {
       try {
-
+        // A. Call API Key
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        // B. Change The Data Like JSON
+        const data = await response.json();
+        // C. Add to State
+        setUsers(data);
       } catch (err) {
-        setError("Failed to fetch data");
+        setError(
+          "Failed to featching data, Please check your internet connection!"
+        );
+      } finally {
+        // However Stop The Loading
+        setLoading(false);
       }
-    }
-  })
+    };
+    fetchUser();
+  }, []); // Why I'm using [] becuse I need to load the data only for page refresh
+
+  // 4. Loading UI
+  if (loading)
+    return (
+      <div className="p-10 flex justify-center text-blue-600 text-xl font-bold animate-pulse">
+        Loading Users...
+      </div>
+    );
+
+  // 5. Error
+  if (error)
+    return (
+      <div className="p-10 text-red-500 text-xl font-bold text-center">
+        Error: {error}
+      </div>
+    );
+
+  // 6. Success UI
   return (
-    <div>page</div>
-  )
+    <div className="p-10 font-sans max-w-6xl mx-auto">
+      <h1 className="text-3xl font-bold text-purple-500 mb-8 text-center">
+        Day - 03 API Fetching
+      </h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {users.map((user) => (
+          <div
+            key={user.id}
+            className="p-6 border rounded-xl shadow-sm hover:shadow-xl transition bg-white border-gray-500"
+          >
+            <h2 className="mb-2 text-xl font-bold text-green-800">
+              {user.name}
+            </h2>
+            <p className="mb-4 text-yellow-800 text-sm break-all">
+              {user.email}
+            </p>
+            <a
+              href={`http://${user.website}`}
+              className="text-gray-500  hover:underline text-sm font-medium mb-1"
+              target="_blank"
+            >
+              {user.website}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default DayThree
+export default DayThree;
