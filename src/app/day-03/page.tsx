@@ -13,7 +13,7 @@ function DayThree() {
   // 2. Set for state users, loading, error
   const [users, setUsers] = useState<User[]>([]); // Manage the users data
   const [loading, setLoading] = useState(true); // Manage the loading
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); // Manage Errror
 
   // 3. Fetching Data
   useEffect(() => {
