@@ -21,6 +21,7 @@ function TaskTwo() {
         "https://jsonplaceholder.typicode.com/photos?_limit=12"
       );
       const data = await response.json();
+      setPhotos(data);
     } catch (err) {
       setError("Data Fetching error, Please check your internet connection!");
     } finally {
@@ -47,6 +48,18 @@ function TaskTwo() {
           Load Photos
         </button>
         {error && <p className="text-red-500 font-bold">{error}</p>}
+      </div>
+      <br />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {photos.map((photo) => (
+          <div key={photo.id}>
+            <img
+              src={photo.thumbnailUrl}
+              alt={photo.title}
+              className="w-full rounded-lg"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
