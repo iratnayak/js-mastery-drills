@@ -7,6 +7,7 @@ function CreatePost() {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [content, setContent] = useState("");
+    const [category, setCategory] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
 
@@ -15,14 +16,24 @@ function CreatePost() {
         e.preventDefault(); // refresh the page
 
         // 03. Clear State
-        setTitle("");
-        setAuthor("");
         setError("");
         setSuccess(false);
 
         // Validation Title length check
         if (title.length < 5) {
             setError("Title must be at least 5 characters long");
+            return;
+        }
+
+        // validation category not empty
+        if (category.trim() === "") {
+            setError("Category is required");
+            return;
+        }
+
+        // validation author length check
+        if (author.length < 3) {
+            setError("Author must be at least 3 characters long");
             return;
         }
 
@@ -33,8 +44,10 @@ function CreatePost() {
         }
 
         setSuccess(true);
+        setTitle("");
+        setAuthor("");
         setContent("");
-
+        setCategory("");
         setTimeout(() => setSuccess(false), 4000);
     }
 
@@ -56,6 +69,23 @@ function CreatePost() {
                 onChange={(e) => setTitle(e.target.value)}
                 required
                 />
+            </div>
+            <div>
+                <label className='block font-bold mb-1'>Category</label>
+                <select 
+                className='w-full p-3 border rounded-lg text-amber-500 focus:border-green-900 outline-none'
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                >
+                    <option value="">Select Category</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Science">Science</option>
+                    <option value="Health">Health</option>
+                    <option value="Business">Business</option>
+                    <option value="Education">Education</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
             <div>
                 <label className='block font-bold mb-1'>Author</label>
