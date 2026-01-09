@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-async function POST(request: Request) {
+export async function POST(request: Request) {
  try{
     // 01. Get the data
     const body = await request.json();
@@ -20,5 +20,3 @@ async function POST(request: Request) {
     }, {status:500});
  }
 }
-
-export default POST
