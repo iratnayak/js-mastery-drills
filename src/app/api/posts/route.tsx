@@ -1,11 +1,23 @@
+import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
  try{
     // 01. Get the data
     const body = await request.json();
-    // 02. Dispaly data in console (Terminal)
-    console.log("New post received:", body);
+    const {title, author, content, category} = body;
+   
+    const newPost = await prisma.post.create({
+        data: {
+            title,
+            author,
+            content,
+            category,
+        },
+    });
+
+    console.log("Data saved database", newPost);
+    
     
     // 03. Sucsess massage sent to the client 
     return NextResponse.json({

@@ -70,7 +70,7 @@ function CreatePost() {
 
   return (
     <div className="p-10 mx-w-xl mx-auto font-sans">
-      <h1 className="text-3xl font-bold text-white mb-8">
+      <h1 className="text-3xl font-bold text-shadow-indigo-400 mb-8">
         Create a New Post ✍️
       </h1>
 
