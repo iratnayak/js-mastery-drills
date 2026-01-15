@@ -1,3 +1,4 @@
+import DeleteButton from "@/components/DeleteButton";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
@@ -34,6 +35,7 @@ export default async function Home() {
             <p className="text-gray-300 mb-4 line-clamp-3">{post.content}</p>
             <div className="flex justify-between items-center text-sm text-gray-500">
               <span>By {post.author}</span>
+              <DeleteButton postId={post.id}/>
               <span>{new Date(post.createdAt).toLocaleDateString()}</span>
               </div>
           </div>
