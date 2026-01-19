@@ -26,7 +26,7 @@ export default async function Home() {
       )}
 
       <div className="grid gap-6">
-        {posts.map((post) => (
+        {posts.map((post: any) => (
           <div key={post.id} className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-500 transition">
             <div className="flex justify-between items-start mb-2">
               <h2 className="text-2xl font-bold text-green-400">{post.title}</h2>
