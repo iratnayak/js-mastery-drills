@@ -2,6 +2,8 @@ import DeleteButton from "@/components/DeleteButton";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
+export const revalidate = 0;
+
 export default async function Home() {
   const posts = await prisma.post.findMany({
     orderBy: {
